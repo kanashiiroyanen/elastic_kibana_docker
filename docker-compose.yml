@@ -2,25 +2,18 @@ version: '3'
 services:
   elasticsearch:
     build: elasticsearch
-    #container_name: elasticsearch
     ports:
       - "9200:9200"
     expose:
       - "9300"
     volumes:
-      - es-data:/usr/share/elasticsearch/data
+      - ./es-data:/usr/share/elasticsearch/data
 
   kibana:
     build: kibana
-    #container_name: kibana
-    environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
       - "5601:5601"
-    depends_on:
-      - elasticsearch
 
-volumes:
-  es-data:
-    driver: local
-      
+#volumes:
+#  es-data:
+#    driver: local
